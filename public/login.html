@@ -1,0 +1,20 @@
+<h1 id="error-text"></h1>
+
+<form method="POST">
+	<label for="email-input">Email</label>
+	<input id="email-input" type="email" name="email-input" placeholder="Your email address">
+
+	<input type="submit" value="Login">
+</form>
+
+<script lang="javascript">
+	// Get the error message
+	const params = new URLSearchParams(window.location.search);
+	const error = params.get("error")
+
+	if (error != null) {
+		var errorText = document.getElementById("error-text")
+		errorText.innerHTML = error
+	}
+
+</script>
