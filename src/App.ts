@@ -6,22 +6,26 @@ class App {
 
 	constructor() {
 		this.express = express.default()
+
+		this.express.use(express.static("public"))
 		this.mountRoutes()
 	}
 
 	private mountRoutes(): void {
 		const router = express.Router()
 
-		router.post('/login', (req, res) => {
+		router.post('/login.html', (req, res) => {
 			//res.send("Hello")
 			let errorMessage = "There was an error"
 
-			res.redirect(`/login?error=${errorMessage}`)
+			res.redirect(`/login.html?error=${errorMessage}`)
 		})
 
+		/*
 		router.get('/login', (req, res) => {
 			res.sendFile(path.join(__dirname, '../public/login.html'))
 		})
+		*/
 
 		router.get('/', (req, res) => {
 			res.end()

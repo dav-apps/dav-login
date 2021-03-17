@@ -1,20 +1,40 @@
-<h1 id="error-text"></h1>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container d-flex flex-column" style="margin-top: 0px; margin-bottom: 0px">
+			<p id="error-text"></p>
 
-<form method="POST">
-	<label for="email-input">Email</label>
-	<input id="email-input" type="email" name="email-input" placeholder="Your email address">
+			<img src="/assets/dav-logo.png" width="60" height="60" class="align-self-center" />
 
-	<input type="submit" value="Login">
-</form>
+			<h2 class="text-center font-weight-light my-4">Log in to dav</h2>
 
-<script lang="javascript">
-	// Get the error message
-	const params = new URLSearchParams(window.location.search);
-	const error = params.get("error")
+			<form method="POST">
+				<div class="form-group">
+					<label for="email-input">Email</label>
+					<input id="email-input" name="email-input" class="form-control" type="email" placeholder="Your email address">
+				</div>
+	
+				<div class="form-group">
+					<label for="password-input">Password</label>
+					<input id="password-input" name="password-input" class="form-control" type="password" placeholder="Your password">
+				</div>
+	
+				<button class="btn btn-primary" type="submit">Login</button>
+			</form>
+		</div>
 
-	if (error != null) {
-		var errorText = document.getElementById("error-text")
-		errorText.innerHTML = error
-	}
-
-</script>
+		<script lang="javascript">
+			// Get the error message
+			const params = new URLSearchParams(window.location.search);
+			const error = params.get("error")
+		
+			if (error != null) {
+				var errorText = document.getElementById("error-text")
+				errorText.innerHTML = error
+			}
+		
+		</script>
+	</body>
+</html>
