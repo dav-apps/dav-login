@@ -42,7 +42,7 @@ class App {
 			}
 
 			// Check for the env vars
-			if(process.env.DAV_APPS_APP_ID == null){
+			if(process.env.DAV_API_KEY == null){
 				let errorMessage = "Environment variables missing!"
 				res.redirect(`/login?error=${errorMessage}`)
 				return
@@ -59,7 +59,7 @@ class App {
 				auth: this.auth,
 				email,
 				password,
-				appId: +process.env.DAV_APPS_APP_ID,
+				appId,
 				apiKey: process.env.DAV_API_KEY,
 				deviceName: "Unknown",
 				deviceType: "Unknown",
