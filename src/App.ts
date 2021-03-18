@@ -1,4 +1,5 @@
 import * as express from 'express'
+import path from 'path'
 import { Dav, Auth, SessionsController, Environment, ErrorCodes } from 'dav-js'
 require('dotenv').config()
 
@@ -9,7 +10,6 @@ class App {
 	constructor() {
 		this.express = express.default()
 
-		this.express.use(express.static("public"))
 		this.express.use(express.urlencoded())
 		this.mountRoutes()
 
@@ -24,7 +24,7 @@ class App {
 	private mountRoutes(): void {
 		const router = express.Router()
 
-		router.post('/login.html', async (req, res) => {
+		router.post('/login', async (req, res) => {
 			// Get the app id, api key and redirect url from the params
 			var appId = +req.query.appId
 			var apiKey = req.query.apiKey
@@ -37,14 +37,14 @@ class App {
 			if(appId == 0 || apiKey == null || redirectUrl == null){
 				// Redirect to login page with error
 				let errorMessage = "Required url param missing!"
-				res.redirect(`/login.html?error=${errorMessage}`)
+				res.redirect(`/login?error=${errorMessage}`)
 				return
 			}
 
 			// Check for the env vars
-			if(process.env.API_BASE_URL == null){
+			if(process.env.DAV_APPS_APP_ID == null){
 				let errorMessage = "Environment variables missing!"
-				res.redirect(`/login.html?error=${errorMessage}`)
+				res.redirect(`/login?error=${errorMessage}`)
 				return
 			}
 
@@ -96,8 +96,16 @@ class App {
 					}
 				}
 
-				res.redirect(`/login.html?appId=${appId}&apiKey=${apiKey}&redirectUrl=${redirectUrl}&email=${email}&error=${errorMessage}`)
+				res.redirect(`/login?appId=${appId}&apiKey=${apiKey}&redirectUrl=${redirectUrl}&email=${email}&error=${errorMessage}`)
 			}
+		})
+
+		router.get('/login', (req, res) => {
+			res.sendFile(path.join(__dirname, '../public/login.html'))
+		})
+
+		router.get('/assets/dav-logo.png', (req, res) => {
+			res.sendFile(path.join(__dirname, '../public/assets/dav-logo.png'))
 		})
 
 		router.get('/', (req, res) => {
