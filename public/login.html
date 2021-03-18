@@ -1,51 +1,70 @@
 <html>
-	<head>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-	</head>
-	<body>
-		<div class="container d-flex flex-column" style="margin-top: 0px; margin-bottom: 0px">
-			<img src="/assets/dav-logo.png" width="60" height="60" class="align-self-center" />
 
-			<h2 class="text-center font-weight-light my-4">Log in to dav</h2>
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
 
-			<div id="error-text" class="alert alert-danger" role="alert" style="display: none"></div>
+<body>
+	<div class="container d-flex flex-column" style="margin-top: 0px; margin-bottom: 0px">
+		<img src="/assets/dav-logo.png" width="60" height="60" class="align-self-center" />
 
-			<form method="POST">
-				<!-- Email -->
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input id="email" name="email" class="form-control" type="email" placeholder="Your email address">
-				</div>
-	
-				<!-- Password -->
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input id="password" name="password" class="form-control" type="password" placeholder="Your password">
-				</div>
-	
-				<button class="btn btn-primary" type="submit">Login</button>
-			</form>
-		</div>
+		<h2 class="text-center font-weight-light my-4">Log in to dav</h2>
 
-		<script lang="javascript">
-			const params = new URLSearchParams(window.location.search)
+		<div id="error-text" class="alert alert-danger" role="alert" style="display: none"></div>
 
-			// Set the email
-			const email = params.get("email")
-			
-			if(email != null){
-				var emailInput = document.getElementById("email")
-				emailInput.setAttribute("value", email)
+		<form method="POST">
+			<!-- Email -->
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input id="email" name="email" class="form-control" type="email" placeholder="Your email address">
+			</div>
+
+			<!-- Password -->
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input id="password" name="password" class="form-control" type="password" placeholder="Your password">
+			</div>
+
+			<button class="btn btn-primary" type="submit">Login</button>
+		</form>
+	</div>
+
+	<script lang="javascript">
+		// Implement URLSearchParams for Internet Explorer
+		window.URLSearchParams = window.URLSearchParams || function (searchString) {
+			var self = this
+			self.searchString = searchString
+			self.get = function (name) {
+				var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(self.searchString)
+				if (results == null) {
+					return null
+				}
+				else {
+					return decodeURI(results[1]) || 0
+				}
 			}
+		}
 
-			// Check if there was an error
-			const error = params.get("error")
-				
-			if (error != null) {
-				var errorText = document.getElementById("error-text")
-				errorText.innerHTML = error
-				errorText.setAttribute("style", "display: unset")
-			}
-		</script>
-	</body>
+		const params = new URLSearchParams(window.location.search)
+
+		// Set the email
+		const email = params.get("email")
+
+		if (email != null) {
+			var emailInput = document.getElementById("email")
+			emailInput.setAttribute("value", email)
+		}
+
+		// Check if there was an error
+		const error = params.get("error")
+
+		if (error != null) {
+			var errorText = document.getElementById("error-text")
+			errorText.innerHTML = error
+			errorText.setAttribute("style", "display: unset")
+		}
+	</script>
+</body>
+
 </html>
