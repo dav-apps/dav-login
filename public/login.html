@@ -4,21 +4,23 @@
 	</head>
 	<body>
 		<div class="container d-flex flex-column" style="margin-top: 0px; margin-bottom: 0px">
-			<p id="error-text"></p>
-
 			<img src="/assets/dav-logo.png" width="60" height="60" class="align-self-center" />
 
 			<h2 class="text-center font-weight-light my-4">Log in to dav</h2>
 
+			<div id="error-text" class="alert alert-danger" role="alert" style="display: none"></div>
+
 			<form method="POST">
+				<!-- Email -->
 				<div class="form-group">
-					<label for="email-input">Email</label>
-					<input id="email-input" name="email-input" class="form-control" type="email" placeholder="Your email address">
+					<label for="email">Email</label>
+					<input id="email" name="email" class="form-control" type="email" placeholder="Your email address">
 				</div>
 	
+				<!-- Password -->
 				<div class="form-group">
-					<label for="password-input">Password</label>
-					<input id="password-input" name="password-input" class="form-control" type="password" placeholder="Your password">
+					<label for="password">Password</label>
+					<input id="password" name="password" class="form-control" type="password" placeholder="Your password">
 				</div>
 	
 				<button class="btn btn-primary" type="submit">Login</button>
@@ -26,15 +28,24 @@
 		</div>
 
 		<script lang="javascript">
-			// Get the error message
-			const params = new URLSearchParams(window.location.search);
+			const params = new URLSearchParams(window.location.search)
+
+			// Set the email
+			const email = params.get("email")
+			
+			if(email != null){
+				var emailInput = document.getElementById("email")
+				emailInput.setAttribute("value", email)
+			}
+
+			// Check if there was an error
 			const error = params.get("error")
-		
+				
 			if (error != null) {
 				var errorText = document.getElementById("error-text")
 				errorText.innerHTML = error
+				errorText.setAttribute("style", "display: unset")
 			}
-		
 		</script>
 	</body>
 </html>
