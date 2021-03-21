@@ -104,6 +104,10 @@ class App {
 			res.sendFile(path.join(__dirname, '../public/login.html'))
 		})
 
+		router.get('/signup', (req, res) => {
+			res.sendFile(path.join(__dirname, '../public/signup.html'))
+		})
+
 		router.get('/assets/dav-logo.png', (req, res) => {
 			res.sendFile(path.join(__dirname, '../public/assets/dav-logo.png'))
 		})

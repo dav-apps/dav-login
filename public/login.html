@@ -11,9 +11,11 @@
 
 		<h2 class="text-center font-weight-light my-4">Log in to dav</h2>
 
-		<div id="error-text" class="alert alert-danger" role="alert" style="display: none"></div>
-
 		<div class="d-flex flex-column">
+			<div class="row">
+				<div id="error-text" class="alert alert-danger col-10 col-sm-8 col-md-6 col-lg-5 mx-auto" role="alert" style="display: none"></div>
+			</div>
+
 			<form method="POST">
 				<!-- Email -->
 				<div class="row">
@@ -31,7 +33,7 @@
 
 						<div class="d-flex flex-row" style="margin-top: 1rem">
 							<button class="btn btn-primary" type="submit">Login</button>
-							<a class="btn btn-light ml-auto" href="signup">Signup</a>
+							<a class="btn btn-light ml-auto" onclick="goToSignup()">Signup</a>
 						</div>
 					</div>
 				</div>
@@ -72,6 +74,42 @@
 			var errorText = document.getElementById("error-text")
 			errorText.innerHTML = error
 			errorText.setAttribute("style", "display: unset")
+		}
+
+		function goToSignup() {
+			// Get the required url params
+			var appId = params.get("appId")
+			var apiKey = params.get("apiKey")
+			var redirectUrl = params.get("redirectUrl")
+			var email = params.get("email")
+			var signupParams = ""
+			var i = 0
+
+			if(appId != null) {
+				signupParams += i == 0 ? "?" : "&"
+				signupParams += "appId=" + appId
+				i++
+			}
+
+			if(apiKey != null) {
+				signupParams += i == 0 ? "?" : "&"
+				signupParams += "apiKey=" + apiKey
+				i++
+			}
+
+			if(redirectUrl != null) {
+				signupParams += i == 0 ? "?" : "&"
+				signupParams += "redirectUrl=" + redirectUrl
+				i++
+			}
+
+			if(email != null) {
+				signupParams += i == 0 ? "?" : "&"
+				signupParams += "email=" + email
+				i++
+			}
+			
+			window.location.href = "signup" + signupParams
 		}
 	</script>
 </body>
