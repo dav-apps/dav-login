@@ -21,7 +21,13 @@
 				<div class="row">
 					<div class="col-10 col-sm-8 col-md-6 col-lg-5 mx-auto">
 						<label for="email">Email</label>
-						<input id="email" name="email" class="form-control" type="email" placeholder="Your email address">
+						<input
+							id="email"
+							name="email"
+							class="form-control"
+							type="email"
+							autocomplete="email"
+							placeholder="Your email address">
 					</div>
 				</div>
 
@@ -29,11 +35,17 @@
 				<div class="row mt-3">
 					<div class="col-10 col-sm-8 col-md-6 col-lg-5 mx-auto">
 						<label for="password">Password</label>
-						<input id="password" name="password" class="form-control" type="password" placeholder="Your password">
+						<input
+							id="password"
+							name="password"
+							class="form-control"
+							type="password"
+							autocomplete="current-password"
+							placeholder="Your password">
 
 						<div class="d-flex flex-row" style="margin-top: 1rem">
-							<button class="btn btn-primary" type="submit">Login</button>
-							<a class="btn btn-light ml-auto" onclick="goToSignup()">Signup</a>
+							<button class="btn btn-primary" type="submit">Log in</button>
+							<a class="btn btn-light ml-auto" onclick="goToSignup()">Sign up</a>
 						</div>
 					</div>
 				</div>
