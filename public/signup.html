@@ -98,12 +98,28 @@
 
 		const params = new URLSearchParams(window.location.search)
 
+		// Set the first name
+		const firstName = params.get("firstName")
+
+		if(firstName != null) {
+			var firstNameInput = document.getElementById("first-name")
+			firstNameInput.setAttribute("value", firstName)
+		}
+
 		// Set the email
 		const email = params.get("email")
 
 		if (email != null) {
 			var emailInput = document.getElementById("email")
 			emailInput.setAttribute("value", email)
+		}
+
+		// Set the password
+		const password = params.get("password")
+
+		if(password != null) {
+			var passwordInput = document.getElementById("password")
+			passwordInput.setAttribute("value", password)
 		}
 
 		// Check if there was an error
@@ -120,6 +136,7 @@
 			var appId = params.get("appId")
 			var apiKey = params.get("apiKey")
 			var redirectUrl = params.get("redirectUrl")
+			var email = params.get("email")
 			var loginParams = ""
 			var i = 0
 
@@ -138,6 +155,12 @@
 			if(redirectUrl != null) {
 				loginParams += i == 0 ? "?" : "&"
 				loginParams += "redirectUrl=" + redirectUrl
+				i++
+			}
+
+			if(email != null) {
+				loginParams += i == 0 ? "?" : "&"
+				loginParams += "email=" + email
 				i++
 			}
 			
