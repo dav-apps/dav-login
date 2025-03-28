@@ -157,7 +157,7 @@ class App {
 					errorMessage = "Please enter your email"
 				} else if (password.length == 0) {
 					errorMessage = "Please enter a password"
-				} else if (response.includes("NAME_TOO_SHORT")) {
+				} else if (response.includes("FIRST_NAME_TOO_SHORT")) {
 					errorMessage = "The name is too short"
 				} else if (response.includes("PASSWORD_TOO_SHORT")) {
 					errorMessage = "Your password is too short"
